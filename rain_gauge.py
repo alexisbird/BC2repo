@@ -12,17 +12,10 @@ One little difference is the file-like object doesn't return strings, it returns
 
 Use the following code snippet to make it return strings.
 
-```python
 
-import urllib.request
 
-​
 
-with urllib.request.urlopen('http://www.gutenberg.org/ebooks/1342.txt.utf-8') as pride_and_prejudice_file:
 
-  lines = [byte_line.decode('utf-8') for byte_line in pride_and_prejudice_file]
-
-```
 
 ​
 
@@ -62,4 +55,19 @@ Find and print out the specific date with the most rain.
 E.g. December 30th has 1" of rain on average.
 
 * Allow someone to type in a date in the future and, using the average value predict the amount of rain."""
+
+import urllib.request
+import statistics
+
+with urllib.request.urlopen('http://www.gutenberg.org/ebooks/1342.txt.utf-8') as pride_and_prejudice_file:
+
+  lines = [byte_line.decode('utf-8') for byte_line in pride_and_prejudice_file]
+
+with urllib.request.urlopen('https://raw.githubusercontent.com/selassid/codeguild/master/sunnyside.rain') as rain_gauge_file:
+
+	rain_stuff = [byte_line.decode('utf-8') for byte_line in rain_gauge_file]
+
+print(rain_stuff)
+
+
 
