@@ -1,14 +1,16 @@
 """ Create a program that scores a hand of Black Jack """
 
-face_value_dict = {"Ace": 1, "Two": 2, "Three": 3, "Four": 4, "Five": 5, "Six": 6, "Seven": 7, "Eight": 8, "Nine": 9, "Ten": 10, "Jack": 10, "Queen": 10, "King": 10}
+# Dictionary to establish all faces possible and their associated values in a game of blackjack specifically, since values might be different for another card game.
+blackjack_value_dict = {"Ace": 1, "Two": 2, "Three": 3, "Four": 4, "Five": 5, "Six": 6, "Seven": 7, "Eight": 8, "Nine": 9, "Ten": 10, "Jack": 10, "Queen": 10, "King": 10}
 
+# List of possible suits in a standard deck of cards
 suit_list = ["Hearts", "Clubs", "Spades", "Diamonds"]
 
-# 1. Make a Class that represents a card.
+# Class that represents a card.
 class Card:
 
 	def __init__(self, suit, face):
-
+		# You don't need a value attribute here, like I originally thought I might, because the values technically only apply to the specific card game you are playing, which in this case is blackjack. The values can change, depending on the card game you're playing, and it's better to create a simpler card class for modularization purposes - that way, it encompasses only the two necessary attributes for a standard playing card and thus doesn't further complicate things with blackjack specific paramaters (e.g. card value) and you can use the card class for a different card game program in the future, yay!
 		self.suit = suit
 		self.face = face
 		
@@ -22,22 +24,23 @@ class Hand:
 
 	def __init__(self):
 
-		# self.card = Card() <--- Note to self: don't do this, your code will break
-		# Created an empty list to initialize card_hand_list because it technically starts as empty anyway but is still a hand, if you get my drift
+		# self.card = Card() <--- Note to self: don't do this, your code will break. Python just doesn't work like that!
+		# Created an empty list to initialize card_hand_list because it technically starts as empty anyway but is still a hand, if you get my drift, which is why you technically don't need to initialize a card attribute because in computer programming world and in this case, the hand can exist with nothing in it technically and that is how it starts anyway.
 		self.card_hand_list = []
 
-	# Function that adds a card to a hand. Must pass card as an argument
+	# Function that adds a card to a hand. Must pass card as an argument because, given the definition of a function, a card will be passed into the add_card function no matter what because obviously that's the purpose of the function.
 	def add_card(self, card):
 		self.card_hand_list.append(card)
-		# Print statement for the time being for testing purposes
 
 
 	def __repr__(self):
 
+		# Need to stringify the return or else an error pops up because it is a list and the magic repr function is expecting to return a string.
 		return str(self.card_hand_list)
 
+# Maybe do a score card function as well as a score hand function??
 # Function that scores a hand
-def score_hand():
+def score_hand(hand):
 	pass
 
 # Function that alerts that hand is now over 21
@@ -45,16 +48,15 @@ def over_21_alert():
 	pass
 
 
-# 3. Add functions that:
-		# - add a card to a hand
-		# - score a hand
-		# - return if score is over 21
-
 # 4. Allow a user to type in a hand and have it be converted into card objects and then scored
 
 # I think I will need a function that randomly selects a card for the user. Or wait...is that getting ahead of myself and that would be a function once I create a deck of cards
+
+# This is just some hard coding for testing purposes
 a_card = Card("Hearts", "Queen")
 print(a_card)
+
+another_card = Card("Clubs", "Ace")
 
 a_hand = Hand()
 print(a_hand)
@@ -62,4 +64,6 @@ print(a_hand)
 a_hand.add_card(a_card)
 print(a_hand)
 
+a_hand.add_card(another_card)
+print(a_hand)
 
