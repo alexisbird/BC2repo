@@ -9,10 +9,15 @@ suit_list = ["Hearts", "Clubs", "Spades", "Diamonds"]
 # Class that represents a card.
 class Card:
 
-	def __init__(self, suit, face):
+	def __init__(self, face, suit):
 		# You don't need a value attribute here, like I originally thought I might, because the values technically only apply to the specific card game you are playing, which in this case is blackjack. The values can change, depending on the card game you're playing, and it's better to create a simpler card class for modularization purposes - that way, it encompasses only the two necessary attributes for a standard playing card and thus doesn't further complicate things with blackjack specific paramaters (e.g. card value) and you can use the card class for a different card game program in the future, yay!
-		self.suit = suit
 		self.face = face
+		self.suit = suit
+
+	def get_blackjack_card_value(self):
+		if self.face in blackjack_value_dict:
+			card_value = blackjack_value_dict[self.face]
+			return card_value
 		
 
 	def __repr__(self):
@@ -32,6 +37,11 @@ class Hand:
 	def add_card(self, card):
 		self.card_hand_list.append(card)
 
+	# Function that scores a hand
+	def score_hand(self, card):
+		for card in self.card_hand_list:
+		 	card_score = sum(self.card_hand_list)
+		pass
 
 	def __repr__(self):
 
@@ -39,8 +49,8 @@ class Hand:
 		return str(self.card_hand_list)
 
 # Maybe do a score card function as well as a score hand function??
-# Function that scores a hand
-def score_hand(hand):
+def card_value(card):
+
 	pass
 
 # Function that alerts that hand is now over 21
@@ -53,17 +63,19 @@ def over_21_alert():
 # I think I will need a function that randomly selects a card for the user. Or wait...is that getting ahead of myself and that would be a function once I create a deck of cards
 
 # This is just some hard coding for testing purposes
-a_card = Card("Hearts", "Queen")
-print(a_card)
+a_card = Card("Queen", "Hearts")
+# print(a_card)
 
-another_card = Card("Clubs", "Ace")
+another_card = Card("Ace", "Clubs")
 
 a_hand = Hand()
-print(a_hand)
+# print(a_hand)
 
 a_hand.add_card(a_card)
 print(a_hand)
 
-a_hand.add_card(another_card)
-print(a_hand)
+# a_hand.add_card(another_card)
+# print(a_hand)
+
+print(another_card.get_blackjack_card_value())
 
