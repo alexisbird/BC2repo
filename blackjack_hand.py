@@ -17,15 +17,16 @@ class Card:
 		# You can only technically return one thing, so the way I had it written before with an and statement (return self.face and self.suit) didn't work because Python will only return one of those. Use .format here instead to be able to include multiple attributes of the Class. The squiggly brackets (a.k.a. curly braces) each represent individually represent the arguments in the parentheses after the .format. Thus, self.face appears within the string where the first set of curly braces are and then self.suit appears where the second set of curly braces are. There is an "of" within the string just so it prints out all pretty and proper for these specific circumstances, meaning because it is a card, it will say Queen of Hearts instead of just Queen Hearts. 
 		return "{} of {}".format(self.face, self.suit)
 
-# 2. Make a Class that represents a hand.
+# 2. Make a Class that represents a hand of cards.
 class Hand:
 
 	def __init__(self):
 
-		# self.card = Card()
+		# self.card = Card() <--- Note to self: don't do this, your code will break
+		# Created an empty list to initialize card_hand_list because it technically starts as empty anyway but is still a hand, if you get my drift
 		self.card_hand_list = []
 
-	# Function that adds a card to a hand
+	# Function that adds a card to a hand. Must pass card as an argument
 	def add_card(self, card):
 		self.card_hand_list.append(card)
 		# Print statement for the time being for testing purposes
