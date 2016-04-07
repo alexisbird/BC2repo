@@ -14,15 +14,16 @@ class Card:
 		self.face = face
 		self.suit = suit
 
-	def get_blackjack_card_value(self):
-		if self.face in blackjack_value_dict:
-			card_value = blackjack_value_dict[self.face]
-			return card_value
+	# def get_blackjack_card_value(self):
+	# 	if self.face in blackjack_value_dict:
+	# 		card_value = blackjack_value_dict[self.face]
+	# 		return card_value
 		
 
 	def __repr__(self):
 		# You can only technically return one thing, so the way I had it written before with an and statement (return self.face and self.suit) didn't work because Python will only return one of those. Use .format here instead to be able to include multiple attributes of the Class. The squiggly brackets (a.k.a. curly braces) each represent individually represent the arguments in the parentheses after the .format. Thus, self.face appears within the string where the first set of curly braces are and then self.suit appears where the second set of curly braces are. There is an "of" within the string just so it prints out all pretty and proper for these specific circumstances, meaning because it is a card, it will say Queen of Hearts instead of just Queen Hearts. 
 		return "{} of {}".format(self.face, self.suit)
+
 
 # 2. Make a Class that represents a hand of cards.
 class Hand:
@@ -48,6 +49,18 @@ class Hand:
 		# Need to stringify the return or else an error pops up because it is a list and the magic repr function is expecting to return a string.
 		return str(self.card_hand_list)
 
+
+def get_blackjack_card_value(hand):
+	hand_value_list = []
+	for card in hand:
+		if card in blackjack_value_dict:
+			card_value = blackjack_value_dict[card]
+			hand_value_list.append(card_value)
+	return hand_value_list
+
+
+		
+
 # Maybe do a score card function as well as a score hand function??
 def card_value(card):
 
@@ -60,22 +73,20 @@ def over_21_alert():
 
 # 4. Allow a user to type in a hand and have it be converted into card objects and then scored
 
-# I think I will need a function that randomly selects a card for the user. Or wait...is that getting ahead of myself and that would be a function once I create a deck of cards
+# I think I will need a function that randomly selects a card for the user. Or wait...is that getting ahead of myself and that would be a function once I create a deck of cards?
 
 # This is just some hard coding for testing purposes
-a_card = Card("Queen", "Hearts")
-# print(a_card)
 
+a_card = Card("Queen", "Hearts")
 another_card = Card("Ace", "Clubs")
 
 a_hand = Hand()
-# print(a_hand)
 
 a_hand.add_card(a_card)
+a_hand.add_card(another_card)
 print(a_hand)
 
-# a_hand.add_card(another_card)
-# print(a_hand)
-
-print(another_card.get_blackjack_card_value())
+print(get_blackjack_card_value(a_hand.card_hand_list))
+# test_hand = ["Queen", "Ace", "Three"]
+# print(get_blackjack_card_value(test_hand))
 
